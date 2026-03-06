@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Playwright 同步与异步机制深度解析</title>
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="../index.html">Playwright 博客</a>
+      <nav class="nav-links">
+        <a href="../index.html">首页</a>
+        <a class="active" href="./playwright-sync-vs-async.html">当前文章</a>
+        <button id="themeToggle" class="theme-btn" type="button" aria-label="切换主题">🌙 夜间</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container article-wrap">
+    <article>
+      <h1>Playwright 同步与异步机制深度解析</h1>
+      <p class="meta">2026-03-06 · 进阶</p>
+
+      <h2>1) Playwright 是什么</h2>
+      <p>Playwright 是微软推出的浏览器自动化框架，支持 Chromium / Firefox / WebKit，常用于 E2E 测试、自动化操作、页面采集与截图。</p>
+
+      <h2>2) 底层执行机制：本质上都是异步 I/O</h2>
+      <p>无论你写的是“同步风格”还是“异步风格”，Playwright 底层都需要与浏览器进程异步通信。同步 API 只是把异步流程包装成阻塞式调用，提升可读性。</p>
+
+      <h2>3) Node.js：天然异步（Promise + await）</h2>
+      <pre><code>const { chromium } = require('playwright');
+
+(async () =&gt; {
+  const browser = await chromium.launch();
+  const page = await browser.newPage();
+  await page.goto('https://example.com');
+  console.log(await page.title());
+  await browser.close();
+})();</code></pre>
+      <p>Node 版本几乎所有操作都返回 Promise，忘记 <code>await</code> 会造成竞态问题。</p>
+
+      <h2>4) Python：同时提供 sync 与 async 两套 API</h2>
+      <h3>同步 API（易读）</h3>
+      <pre><code>from playwright.sync_api import sync_playwright
+
+with sync_playwright() as p:
+    browser = p.chromium.launch()
+    page = browser.new_page()
+    page.goto("https://example.com")
+    print(page.title())
+    browser.close()</code></pre>
+
+      <h3>异步 API（并发友好）</h3>
+      <pre><code>import asyncio
+from playwright.async_api import async_playwright
+
+async def main():
+    async with async_playwright() as p:
+        browser = await p.chromium.launch()
+        page = await browser.new_page()
+        await page.goto("https://example.com")
+        print(await page.title())
+        await browser.close()
+
+asyncio.run(main())</code></pre>
+
+      <h2>5) 自动等待机制（Auto-wait）</h2>
+      <p>Playwright 会在点击、输入等操作前自动等待元素满足可见、可交互、稳定等条件，减少 flaky tests 和硬编码 <code>sleep</code>。</p>
+
+      <h2>6) 什么时候用同步，什么时候用异步？</h2>
+      <ul>
+        <li>线性脚本、快速开发：优先同步 API（Python）</li>
+        <li>高并发任务、异步服务集成：优先异步 API</li>
+        <li>Node 环境：默认走 async/await 心智模型</li>
+      </ul>
+
+      <h2>7) 常见坑</h2>
+      <ol>
+        <li>忘记 <code>await</code> 导致执行顺序错乱</li>
+        <li>在已有事件循环里硬套同步 API</li>
+        <li>用 <code>sleep</code> 代替条件等待，导致慢且不稳定</li>
+        <li>并发开太多页面，资源占用飙升</li>
+      </ol>
+
+      <h2>8) 总结</h2>
+      <p>Playwright 的底层是异步通信；同步只是对异步的友好封装。选型核心不是“哪个更高级”，而是“哪个更匹配你的任务复杂度和并发需求”。</p>
+    </article>
+
+    <p class="back"><a href="../index.html">← 返回首页</a></p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">© 2026 Playwright 博客</div>
+  </footer>
+
+  <script>
+    (function () {
+      const root = document.documentElement;
+      const btn = document.getElementById('themeToggle');
+      const saved = localStorage.getItem('theme');
+      if (saved === 'dark') root.setAttribute('data-theme', 'dark');
+
+      function syncText() {
+        const dark = root.getAttribute('data-theme') === 'dark';
+        btn.textContent = dark ? '☀️ 日间' : '🌙 夜间';
+      }
+      syncText();
+
+      btn.addEventListener('click', () => {
+        const now = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', now);
+        localStorage.setItem('theme', now);
+        syncText();
+      });
+    })();
+  </script>
+</body>
+</html>
