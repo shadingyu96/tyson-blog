@@ -1,0 +1,29 @@
+backend:
+  name: github
+  repo: shadingyu96/tyson-blog
+  branch: main
+  # 你部署 OAuth 服务后，把下面两项改成你的地址
+  base_url: https://YOUR-OAUTH-SERVICE.onrender.com
+  auth_endpoint: auth
+
+site_url: https://shadingyu96.github.io/tyson-blog/
+display_url: https://shadingyu96.github.io/tyson-blog/
+logo_url: https://shadingyu96.github.io/tyson-blog/favicon.ico
+
+publish_mode: editorial_workflow
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "posts"
+    label: "文章"
+    folder: "content/posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { label: "标题", name: "title", widget: "string" }
+      - { label: "发布日期", name: "date", widget: "datetime", format: "YYYY-MM-DD HH:mm", date_format: "YYYY-MM-DD", time_format: "HH:mm" }
+      - { label: "摘要", name: "summary", widget: "text" }
+      - { label: "正文", name: "body", widget: "markdown" }
