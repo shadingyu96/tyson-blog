@@ -1,4 +1,4 @@
-# Playwright 博客（静态版）
+# Tyson博客（静态版）
 
 一个纯 HTML + CSS 的轻量博客示例，无需 npm 或构建工具。
 
@@ -9,7 +9,7 @@
 
 方式二：本地 HTTP 服务（推荐）
 ```bash
-cd /home/node/.openclaw/workspace/playwright-blog
+cd /home/node/.openclaw/workspace/tyson-blog
 python3 -m http.server 8080
 ```
 然后访问：
@@ -25,7 +25,7 @@ python3 -m http.server 8080
 ## 目录结构
 
 ```text
-playwright-blog/
+tyson-blog/
 ├── index.html
 ├── styles.css
 └── posts/
@@ -34,10 +34,10 @@ playwright-blog/
 
 ## 发布到 GitHub Pages（可选）
 
-1. 新建 GitHub 仓库（例如 `playwright-blog`）
+1. 新建 GitHub 仓库（例如 `tyson-blog`）
 2. 推送本目录代码
 3. 在仓库 Settings → Pages
    - Source 选择 `Deploy from a branch`
    - Branch 选择 `main` / root
 4. 几分钟后可访问：
-   - `https://<你的GitHub用户名>.github.io/playwright-blog/`
+   - `https://<你的GitHub用户名>.github.io/tyson-blog/`
