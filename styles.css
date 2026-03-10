@@ -43,7 +43,7 @@ a {
 a:hover { text-decoration: underline; }
 
 .container {
-  width: min(880px, 92vw);
+  width: min(1100px, 95vw);
   margin: 0 auto;
 }
 
@@ -476,7 +476,7 @@ a {
 a:hover { text-decoration: underline; }
 
 .container {
-  width: min(880px, 92vw);
+  width: min(1100px, 95vw);
   margin: 0 auto;
 }
 
@@ -935,7 +935,7 @@ html[data-theme="dark"] .tag-learn {
 
 /* 左侧目录 - CSDN风格 */
 .toc {
-  width: 160px;
+  width: 180px;
   flex-shrink: 0;
   position: sticky;
   top: 80px;
