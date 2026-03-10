@@ -19,14 +19,30 @@
     </div>
   </header>
 
-  <main class="container article-wrap">
-    <article>
+  <main class="container article-wrap toc-layout">
+<div class="toc">
+      <div class="toc-title">📑 文章目录</div>
+      <ul>
+        <li><a href="#toc-1">先说结论（30秒版）</a></li>
+        <li><a href="#toc-2">1) Agent 是什么？</a></li>
+        <li><a href="#toc-3">2) MCP 是什么？</a></li>
+        <li><a href="#toc-4">3) Skill 是什么？</a></li>
+        <li><a href="#toc-5">4) 三者关系（一句话）</a></li>
+        <li><a href="#toc-6">5) 典型执行流程</a></li>
+        <li><a href="#toc-7">6) 出错时怎么办？</a></li>
+        <li><a href="#toc-8">7) 为什么这套架构重要？</a></li>
+        <li><a href="#toc-9">记忆口诀</a></li>
+      </ul>
+    </div>
+
+
+    <article class="article-content">
       <h1>一文看懂：Agent、MCP、Skill 到底是什么？</h1>
       <p class="meta">2026-03-07 · AI入门</p>
 
       <p>很多人听到 AI 术语会头大。其实它们没那么玄，像搭积木一样就能理解。</p>
 
-      <h2>先说结论（30秒版）</h2>
+      <h2 id="toc-1">先说结论（30秒版）</h2>
       <ul>
         <li><strong>Agent（智能体）</strong>：会“办事”的 AI 助手，不只是聊天。</li>
         <li><strong>MCP</strong>：AI 连接外部工具的“统一插口标准”。</li>
@@ -34,7 +50,7 @@
       </ul>
       <p><strong>一句话：</strong>你提需求 → Agent 想步骤 → Skill 给方法 → MCP 连工具 → Agent 给结果。</p>
 
-      <h2>1) Agent 是什么？</h2>
+      <h2 id="toc-2">1) Agent 是什么？</h2>
       <p>普通 AI 像“会回答问题的百科全书”，而 Agent 更像“会干活的助理”。</p>
       <ol>
         <li>听懂目标</li>
@@ -44,7 +60,7 @@
         <li>返回结论与建议</li>
       </ol>
 
-      <h2>2) MCP 是什么？</h2>
+      <h2 id="toc-3">2) MCP 是什么？</h2>
       <p>MCP（Model Context Protocol）可以理解成 AI 世界的“USB 接口标准”。</p>
       <p>以前每个工具都要单独适配；有了 MCP，只要工具支持 MCP，Agent 就能用统一方式连接。</p>
       <ul>
@@ -53,7 +69,7 @@
         <li>扩展更稳</li>
       </ul>
 
-      <h2>3) Skill 是什么？</h2>
+      <h2 id="toc-4">3) Skill 是什么？</h2>
       <p>Skill 就是一份任务说明书，告诉 Agent：</p>
       <ul>
         <li>什么时候用这套方法</li>
@@ -62,10 +78,10 @@
         <li>要避开什么坑</li>
       </ul>
 
-      <h2>4) 三者关系（一句话）</h2>
+      <h2 id="toc-5">4) 三者关系（一句话）</h2>
       <p><strong>Agent 是执行者，Skill 是打法，MCP 是连接器。</strong></p>
 
-      <h2>5) 典型执行流程</h2>
+      <h2 id="toc-6">5) 典型执行流程</h2>
       <pre><code>用户提目标
   ↓
 Agent 理解需求
@@ -78,7 +94,7 @@ Agent 理解需求
   ↓
 输出答案 + 下一步建议</code></pre>
 
-      <h2>6) 出错时怎么办？</h2>
+      <h2 id="toc-7">6) 出错时怎么办？</h2>
       <ol>
         <li>先重试（临时网络问题很常见）</li>
         <li>再换备用工具</li>
@@ -86,10 +102,10 @@ Agent 理解需求
         <li>最后向用户补充提问</li>
       </ol>
 
-      <h2>7) 为什么这套架构重要？</h2>
+      <h2 id="toc-8">7) 为什么这套架构重要？</h2>
       <p>因为企业真正需要的是“可执行、可扩展、可控可审计”的 AI 系统，而不只是聊天机器人。</p>
 
-      <h2>记忆口诀</h2>
+      <h2 id="toc-9">记忆口诀</h2>
       <p><strong>Agent 是人，Skill 是方法，MCP 是插头。</strong></p>
     </article>
 
@@ -122,11 +138,10 @@ Agent 理解需求
     })();
   </script>
   <script>
-    window.addEventListener('scroll', function() {
-      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrolled = (winScroll / height) * 100;
-      document.getElementById('progressBar').style.width = scrolled + '%';
+    window.addEventListener("scroll", function() {
+      var progress = (document.documentElement.scrollTop || document.body.scrollTop) / 
+        (document.documentElement.scrollHeight - document.documentElement.clientHeight) * 100;
+      document.getElementById("progressBar").style.width = progress + "%";
     });
   </script>
 </body>
