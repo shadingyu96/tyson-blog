@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="../styles.css" />
 </head>
 <body>
+  <div id="progressBar"></div>
   <header class="site-header">
     <div class="container nav">
       <a class="brand" href="../index.html">Tyson博客</a>
@@ -19,13 +20,26 @@
   </header>
 
   <main class="container article-wrap">
+    <div class="toc">
+      <div class="toc-title">📑 文章目录</div>
+      <ul>
+        <li><a href="#section-1">先说结论</a></li>
+        <li><a href="#section-2">酸奶 vs 咖啡</a></li>
+        <li><a href="#section-3">胃肠敏感怎么喝酸奶</a></li>
+        <li><a href="#section-4">一天安排</a></li>
+        <li><a href="#section-5">常见误区</a></li>
+        <li><a href="#section-6">可执行清单</a></li>
+      </ul>
+    </div>
+
+  <main class="container article-wrap">
     <article>
       <h1>胃肠敏感人群怎么喝酸奶和咖啡？一份可执行的日程表</h1>
       <p class="meta">2026-03-09 · 健康习惯</p>
 
       <p>很多人都有同一个问题：想靠咖啡提升效率，又担心胃不舒服、晚上睡不着；还想通过酸奶改善肠道状态。这篇给你一个能直接执行的版本。</p>
 
-      <h2>先说结论（30秒版）</h2>
+      <h2 id="section-1">先说结论（30秒版）</h2>
       <ol>
         <li>一天 <strong>150g 酸奶通常没问题</strong>，一般不会营养过剩。</li>
         <li>胃肠敏感时，优先选 <strong>0乳糖、低糖酸奶</strong>。</li>
@@ -33,14 +47,14 @@
         <li>咖啡适合快速提神，但 <strong>16:00 后尽量不喝</strong>。</li>
       </ol>
 
-      <h2>酸奶 vs 咖啡：怎么选？</h2>
+      <h2 id="section-2">酸奶 vs 咖啡：怎么选？</h2>
       <ul>
         <li>要立刻提神、提高当下效率：<strong>咖啡更直接</strong></li>
         <li>想温和一些、偏日常保养：<strong>酸奶更稳妥</strong></li>
       </ul>
       <p>简单理解：咖啡是快速工具，酸奶是慢变量支持。</p>
 
-      <h2>胃肠敏感怎么喝酸奶（重点）</h2>
+      <h2 id="section-3">胃肠敏感怎么喝酸奶（重点）</h2>
       <ul>
         <li>从 <strong>80~100g/天</strong> 起步，观察 3~5 天</li>
         <li>稳定后可到 <strong>100~150g/天</strong></li>
@@ -49,7 +63,7 @@
         <li>选低糖/无蔗糖款，减少肠胃负担</li>
       </ul>
 
-      <h2>提神不伤胃的一天安排（12:00睡 / 08:00起）</h2>
+      <h2 id="section-4">提神不伤胃的一天安排（12:00睡 / 08:00起）</h2>
       <ul>
         <li><strong>08:00</strong> 起床：200ml 温水</li>
         <li><strong>08:30</strong> 早餐：温和主食 + 蛋白（别空腹咖啡）</li>
@@ -61,14 +75,14 @@
         <li><strong>23:30 后</strong> 不再进食大量食物</li>
       </ul>
 
-      <h2>常见误区</h2>
+      <h2 id="section-5">常见误区</h2>
       <ol>
         <li>酸奶能“治好”胃肠（错：只能辅助部分人改善）</li>
         <li>0乳糖就能无限喝（错：总糖和总热量仍要控制）</li>
         <li>困了就一直续咖啡（错：会破坏睡眠形成恶循环）</li>
       </ol>
 
-      <h2>可执行清单（懒人版）</h2>
+      <h2 id="section-6">可执行清单（懒人版）</h2>
       <ul>
         <li>[ ] 每天酸奶 100~150g（0乳糖、低糖）</li>
         <li>[ ] 咖啡尽量集中在上午</li>
@@ -105,6 +119,15 @@
         syncText();
       });
     })();
+  </script>
+  <script>
+    // 阅读进度条
+    window.addEventListener('scroll', function() {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progressBar').style.width = scrolled + '%';
+    });
   </script>
 </body>
 </html>

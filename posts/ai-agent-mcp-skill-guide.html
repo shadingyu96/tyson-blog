@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="../styles.css" />
 </head>
 <body>
+  <div id="progressBar"></div>
   <header class="site-header">
     <div class="container nav">
       <a class="brand" href="../index.html">Tyson博客</a>
@@ -19,13 +20,26 @@
   </header>
 
   <main class="container article-wrap">
+    <div class="toc">
+      <div class="toc-title">📑 文章目录</div>
+      <ul>
+        <li><a href="#section-1">先说结论</a></li>
+        <li><a href="#section-2">酸奶 vs 咖啡</a></li>
+        <li><a href="#section-3">胃肠敏感怎么喝酸奶</a></li>
+        <li><a href="#section-4">一天安排</a></li>
+        <li><a href="#section-5">常见误区</a></li>
+        <li><a href="#section-6">可执行清单</a></li>
+      </ul>
+    </div>
+
+  <main class="container article-wrap">
     <article>
       <h1>一文看懂：Agent、MCP、Skill 到底是什么？</h1>
       <p class="meta">2026-03-07 · AI入门</p>
 
       <p>很多人听到 AI 术语会头大。其实它们没那么玄，像搭积木一样就能理解。</p>
 
-      <h2>先说结论（30秒版）</h2>
+      <h2 id="section-1">先说结论（30秒版）</h2>
       <ul>
         <li><strong>Agent（智能体）</strong>：会“办事”的 AI 助手，不只是聊天。</li>
         <li><strong>MCP</strong>：AI 连接外部工具的“统一插口标准”。</li>
@@ -119,6 +133,15 @@ Agent 理解需求
         syncText();
       });
     })();
+  </script>
+  <script>
+    // 阅读进度条
+    window.addEventListener('scroll', function() {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progressBar').style.width = scrolled + '%';
+    });
   </script>
 </body>
 </html>
