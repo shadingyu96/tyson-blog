@@ -229,3 +229,73 @@ pre {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin: 1.2rem 0 1rem;
+  flex-wrap: wrap;
+}
+
+.tab {
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text-muted);
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.tab:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.tab.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+/* Tags */
+.tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 12px;
+  margin-bottom: 0.4rem;
+  font-weight: 500;
+}
+
+.tag-brief {
+  background: #e8f4ea;
+  color: #2e7d32;
+}
+
+.tag-life {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+.tag-learn {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+html[data-theme="dark"] .tag-brief {
+  background: #1b3a1f;
+  color: #81c784;
+}
+
+html[data-theme="dark"] .tag-life {
+  background: #3d2600;
+  color: #ffb74d;
+}
+
+html[data-theme="dark"] .tag-learn {
+  background: #0d2137;
+  color: #64b5f6;
+}

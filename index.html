@@ -4,12 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tyson博客</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="site-header">
     <div class="container nav">
-      <a class="brand" href="index.html">Tyson博客</a>
+      <a class="brand" href="index.html">
+        <img src="favicon.svg" alt="" width="24" height="24" style="vertical-align:middle;margin-right:6px;">
+        Tyson博客
+      </a>
       <nav class="nav-links">
         <a class="active" href="index.html">首页</a>
         <a href="posts/playwright-sync-vs-async.html">文章</a>
@@ -20,53 +24,50 @@
 
   <main class="container">
     <section class="hero">
-      <h1>自动化测试与浏览器控制实践笔记</h1>
-      <p>这里记录我对 Playwright 与 AI Agent 的学习、踩坑和总结。</p>
+      <h1>记录学习、生活与每日成长</h1>
+      <p>早报精选 · 生活分享 · 技术笔记</p>
     </section>
 
+    <div class="tabs">
+      <button class="tab active" data-cat="all">全部</button>
+      <button class="tab" data-cat="brief">早报</button>
+      <button class="tab" data-cat="life">生活</button>
+      <button class="tab" data-cat="learn">学习</button>
+    </div>
+
     <section>
-      <h2 class="section-title">文章列表</h2>
       <div class="article-list">
-        <article class="card">
+        <article class="card" data-cat="brief">
+          <span class="tag tag-brief">早报</span>
           <h3><a href="posts/2026-03-10-morning-brief.html">Tyson 早报｜2026-03-10</a></h3>
-          <p class="meta">2026-03-10 · 每日早报</p>
+          <p class="meta">2026-03-10</p>
           <p class="desc">科技、AI与股市综合快讯：聚焦官方与主流来源，给出对普通读者的直接意义。</p>
           <a class="read-more" href="posts/2026-03-10-morning-brief.html">阅读全文 →</a>
         </article>
 
-        <article class="card">
-          <h3><a href="posts/yogurt-coffee-gut.html">胃肠敏感人群怎么喝酸奶和咖啡？一份可执行的日程表</a></h3>
-          <p class="meta">2026-03-09 · 健康习惯</p>
-          <p class="desc">基于“0乳糖酸奶 + 咖啡提神”的真实场景，给出不伤胃、少失眠的一天安排。</p>
+        <article class="card" data-cat="life">
+          <span class="tag tag-life">生活</span>
+          <h3><a href="posts/yogurt-coffee-gut.html">胃肠敏感人群怎么喝酸奶和咖啡？</a></h3>
+          <p class="meta">2026-03-09</p>
+          <p class="desc">基于"0乳糖酸奶 + 咖啡提神"的真实场景，给出不伤胃、少失眠的一天安排。</p>
           <a class="read-more" href="posts/yogurt-coffee-gut.html">阅读全文 →</a>
         </article>
 
-        <article class="card">
+        <article class="card" data-cat="learn">
+          <span class="tag tag-learn">学习</span>
           <h3><a href="posts/ai-agent-mcp-skill-guide.html">一文看懂：Agent、MCP、Skill 到底是什么？</a></h3>
-          <p class="meta">2026-03-07 · AI入门</p>
+          <p class="meta">2026-03-07</p>
           <p class="desc">用通俗语言讲清 Agent、MCP、Skill 的关系、执行流程和出错处理逻辑。</p>
           <a class="read-more" href="posts/ai-agent-mcp-skill-guide.html">阅读全文 →</a>
         </article>
 
-        <article class="card">
+        <article class="card" data-cat="learn">
+          <span class="tag tag-learn">学习</span>
           <h3><a href="posts/playwright-sync-vs-async.html">Playwright 同步与异步机制深度解析</a></h3>
-          <p class="meta">2026-03-06 · 进阶</p>
+          <p class="meta">2026-03-06</p>
           <p class="desc">从底层通信机制讲到 Node/Python API 设计，顺带拆解自动等待和常见坑。</p>
           <a class="read-more" href="posts/playwright-sync-vs-async.html">阅读全文 →</a>
         </article>
-
-        <article class="card">
-          <h3>下一篇（预告）：Locator 最佳实践</h3>
-          <p class="meta">即将发布</p>
-          <p class="desc">如何写更稳定的定位器，减少 flaky tests。</p>
-          <span class="read-more">敬请期待</span>
-        </article>
-      </div>
-
-      <div class="pagination" aria-label="分页">
-        <span class="current">1</span>
-        <a href="#" aria-disabled="true">2</a>
-        <a href="#" aria-disabled="true">下一页</a>
       </div>
     </section>
   </main>
@@ -93,6 +94,22 @@
         root.setAttribute('data-theme', now);
         localStorage.setItem('theme', now);
         syncText();
+      });
+
+      // Tab filtering
+      document.querySelectorAll('.tab').forEach(function(tab) {
+        tab.addEventListener('click', function() {
+          document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+          this.classList.add('active');
+          const cat = this.dataset.cat;
+          document.querySelectorAll('.card').forEach(function(card) {
+            if (cat === 'all' || card.dataset.cat === cat) {
+              card.style.display = '';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
       });
     })();
   </script>
