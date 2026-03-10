@@ -17,11 +17,7 @@
         <button id="themeToggle" class="theme-btn" type="button" aria-label="切换主题">🌙 夜间</button>
       </nav>
     </div>
-  </header>
-
-<div class="toc">
-      <div class="toc-title">📑 文章目录</div>
-      <ul>
+  </header><ul>
         <li><a href="#section-1">1) Playwright 是什么</a></li>
         <li><a href="#section-2">2) 底层执行机制：本质上都是异步 I/O</a></li>
         <li><a href="#section-3">3) Node.js：天然异步（Promise + await）</a></li>
@@ -35,7 +31,10 @@
 
 
 
-  <main class="container article-wrap"><ul>
+  <main class="container article-wrap">
+    <aside class="toc-sidebar">
+      <div class="toc-title">📑 目录</div>
+      <ul class="toc-list"><ul>
         <li><a href="#section-1">先说结论</a></li>
         <li><a href="#section-2">酸奶 vs 咖啡</a></li>
         <li><a href="#section-3">胃肠敏感怎么喝酸奶</a></li>
@@ -46,6 +45,9 @@
     </div>
 
   <main class="container article-wrap">
+    <aside class="toc-sidebar">
+      <div class="toc-title">📑 目录</div>
+      <ul class="toc-list">
     <article>
       <h1>Playwright 同步与异步机制深度解析</h1>
       <p class="meta">2026-03-06 · 进阶</p>
@@ -114,6 +116,8 @@ asyncio.run(main())</code></pre>
       <h2 id="section-8">8) 总结</h2>
       <p>Playwright 的底层是异步通信；同步只是对异步的友好封装。选型核心不是“哪个更高级”，而是“哪个更匹配你的任务复杂度和并发需求”。</p>
     </article>
+
+        </aside>
 
     <p class="back"><a href="../index.html">← 返回首页</a></p>
   </main>

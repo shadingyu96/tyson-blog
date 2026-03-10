@@ -420,3 +420,75 @@ html[data-theme="dark"] .tag-learn {
   color: var(--primary);
   border-left-color: var(--primary);
 }
+
+/* 右侧目录 - 博客园风格 */
+.article-wrap {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.article-wrap article {
+  flex: 1;
+  min-width: 0;
+}
+
+.toc-sidebar {
+  width: 180px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 80px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.8rem;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+}
+
+.toc-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+
+.toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.toc-list li {
+  margin: 0.25rem 0;
+}
+
+.toc-list a {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  display: block;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  transition: all 0.2s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.toc-list a:hover {
+  color: var(--primary);
+  background: var(--card);
+}
+
+/* 移动端隐藏右侧目录 */
+@media (max-width: 900px) {
+  .article-wrap {
+    flex-direction: column;
+  }
+  .toc-sidebar {
+    width: 100%;
+    position: static;
+    max-height: none;
+    order: -1;
+  }
+}
