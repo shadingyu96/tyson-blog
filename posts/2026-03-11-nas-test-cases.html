@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>绿联NAS监控中心测试用例（P0+P1） - Tyson博客</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="../index.html">首页</a>
+            <a href="../index.html#posts">文章</a>
+        </nav>
+        <button id="theme-toggle" onclick="toggleTheme()">🌙</button>
+    </header>
+
+    <main>
+        <article>
+            <h1>绿联NAS监控中心测试用例（P0+P1）</h1>
+            <p class="meta">📅 2026-03-11 | 🏷️ 测试用例</p>
+            
+            <h2>测试类型说明</h2>
+            <ul>
+                <li><strong>🔴 P0</strong> - 核心功能阻断（必须通过）</li>
+                <li><strong>🟡 P1</strong> - 重要功能</li>
+            </ul>
+
+            <h2>一、设备管理模块</h2>
+            <h3>1.1 设备发现</h3>
+            <table>
+                <thead><tr><th>ID</th><th>类型</th><th>测试标题</th><th>预期结果</th></tr></thead>
+                <tbody>
+                    <tr><td>DM-001</td><td>P0</td><td>同局域网内设备自动发现</td><td>成功发现同网段摄像头</td></tr>
+                    <tr><td>DM-002</td><td>P1</td><td>跨VLAN设备发现</td><td>应提示无法发现或需要手动添加</td></tr>
+                    <tr><td>DM-004</td><td>P0</td><td>大量设备同时发现(30+)</td><td>稳定完成，发现结果准确</td></tr>
+                </tbody>
+            </table>
+
+            <h3>1.2 设备添加</h3>
+            <table>
+                <thead><tr><th>ID</th><th>类型</th><th>测试标题</th><th>预期结果</th></tr></thead>
+                <tbody>
+                    <tr><td>DM-006</td><td>P0</td><td>ONVIF协议添加摄像头</td><td>添加成功</td></tr>
+                    <tr><td>DM-007</td><td>P0</td><td>RTSP协议手动添加</td><td>添加成功</td></tr>
+                    <tr><td>DM-012</td><td>P0</td><td>批量添加设备(30个)</td><td>均能成功添加</td></tr>
+                </tbody>
+            </table>
+
+            <h3>1.5 设备查询</h3>
+            <table>
+                <thead><tr><th>ID</th><th>类型</th><th>测试标题</th><th>预期结果</th></tr></thead>
+                <tbody>
+                    <tr><td>DM-020</td><td>P0</td><td>按名称搜索设备</td><td>正确返回匹配设备</td></tr>
+                    <tr><td>DM-021</td><td>P0</td><td>大量设备列表查询</td><td>响应<1s</td></tr>
+                </tbody>
+            </table>
+
+            <h2>二、设备状态管理</h2>
+            <table>
+                <thead><tr><th>ID</th><th>类型</th><th>测试标题</th><th>预期结果</th></tr></thead>
+                <tbody>
+                    <tr><td>SM-001</td><td>P0</td><td>设备状态自动流转</td><td>状态从离线→在线</td></tr>
+                    <tr><td>TAG-001</td><td>P0</td><td>创建设备标签</td><td>标签创建成功</td></tr>
+                </tbody>
+            </table>
+
+            <h2>三、流媒体交互模块</h2>
+            <table>
+                <thead><tr><th>ID</th><th>类型</th><th>测试标题</th><th>预期结果</th></tr></thead>
+                <tbody>
+                    <tr><td>ST-001</td><td>P0</td><td>流媒体服务上线</td><td>状态显示已启动</td></tr>
+                    <tr><td>ST-007</td><td>P0</td><td>直播流播放</td><td>视频流畅播放</td></tr>
+                    <tr><td>ST-008</td><td>P0</td><td>回放播放</td><td>回放正常</td></tr>
+                    <tr><td>ST-010</td><td>P0</td><td>多路同时播放</td><td>无卡顿/不闪退</td></tr>
+                </tbody>
+            </table>
+
+            <h2>四、播放鉴权模块</h2>
+            <table>
+                <thead><tr><th>ID</th><th>类型</th><th>测试标题</th><th>预期结果</th></tr></thead>
+                <tbody>
+                    <tr><td>AUTH-001</td><td>P0</td><td>获取playToken</td><td>返回有效Token</td></tr>
+                    <tr><td>AUTH-002</td><td>P0</td><td>Token校验成功</td><td>播放成功</td></tr>
+                </tbody>
+            </table>
+
+            <h2>五、录像管理模块</h2>
+            <table>
+                <thead><tr><th>ID</th><th>类型</th><th>测试标题</th><th>预期结果</th></tr></thead>
+                <tbody>
+                    <tr><td>REC-001</td><td>P0</td><td>录像文件查询</td><td>正确列出录像</td></tr>
+                    <tr><td>REC-002</td><td>P0</td><td>删除录像文件</td><td>文件删除成功</td></tr>
+                    <tr><td>REC-003</td><td>P0</td><td>下载录像</td><td>下载成功且完整</td></tr>
+                </tbody>
+            </table>
+
+            <h2>六、事件管理模块</h2>
+            <table>
+                <thead><tr><th>ID</th><th>类型</th><th>测试标题</th><th>预期结果</th></tr></thead>
+                <tbody>
+                    <tr><td>EVT-001</td><td>P0</td><td>事件触发录制</td><td>事件录制开始</td></tr>
+                    <tr><td>EVT-002</td><td>P0</td><td>事件预录制</td><td>包含事件前3s</td></tr>
+                    <tr><td>EVT-003</td><td>P0</td><td>事件延录制</td><td>继续录制10s</td></tr>
+                </tbody>
+            </table>
+
+            <h2>七、设备兼容性</h2>
+            <table>
+                <thead><tr><th>ID</th><th>类型</th><th>测试标题</th><th>预期结果</th></tr></thead>
+                <tbody>
+                    <tr><td>COMP-001</td><td>P0</td><td>海康威视设备适配</td><td>功能正常</td></tr>
+                    <tr><td>COMP-002</td><td>P0</td><td>TP-Link/Tapo设备适配</td><td>功能正常</td></tr>
+                    <tr><td>COMP-003</td><td>P0</td><td>大华设备适配</td><td>功能正常</td></tr>
+                    <tr><td>COMP-004</td><td>P0</td><td>Reolink设备适配</td><td>功能正常</td></tr>
+                </tbody>
+            </table>
+
+            <h2>八、可靠性/稳定性</h2>
+            <table>
+                <thead><tr><th>ID</th><th>类型</th><th>测试标题</th><th>预期结果</th></tr></thead>
+                <tbody>
+                    <tr><td>REL-001</td><td>P0</td><td>7x24小时长期运行</td><td>无崩溃/内存泄漏</td></tr>
+                    <tr><td>REL-003</td><td>P0</td><td>高并发操作</td><td>无异常</td></tr>
+                </tbody>
+            </table>
+
+            <h2>统计汇总</h2>
+            <table>
+                <thead><tr><th>模块</th><th>P0用例</th><th>P1用例</th><th>合计</th></tr></thead>
+                <tbody>
+                    <tr><td>设备管理</td><td>18</td><td>13</td><td>31</td></tr>
+                    <tr><td>设备状态管理</td><td>5</td><td>2</td><td>7</td></tr>
+                    <tr><td>流媒体交互</td><td>9</td><td>3</td><td>12</td></tr>
+                    <tr><td>播放鉴权</td><td>2</td><td>3</td><td>5</td></tr>
+                    <tr><td>录像管理</td><td>3</td><td>3</td><td>6</td></tr>
+                    <tr><td>事件管理</td><td>4</td><td>2</td><td>6</td></tr>
+                    <tr><td>设备兼容性</td><td>4</td><td>1</td><td>5</td></tr>
+                    <tr><td>可靠性</td><td>3</td><td>2</td><td>5</td></tr>
+                    <tr><td><strong>总计</strong></td><td><strong>56</strong></td><td><strong>40</strong></td><td><strong>96</strong></td></tr>
+                </tbody>
+            </table>
+
+            <p><em>*本文档由 OpenClaw 自动生成</em></p>
+        </article>
+    </main>
+
+    <script src="../admin/theme.js"></script>
+</body>
+</html>
